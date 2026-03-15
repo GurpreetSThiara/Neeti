@@ -1,0 +1,226 @@
+.main {
+  padding-top: 80px; /* Offset for navbar */
+  background-color: var(--color-bg);
+}
+
+.header {
+  padding: 6rem 0 4rem;
+  background-color: var(--color-bg-dark);
+  color: white;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerContent {
+  max-width: 800px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 4rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.philosophySection {
+  background-color: var(--color-bg);
+}
+
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .twoColumnGrid {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.textContent p {
+  font-size: 1.125rem;
+  color: rgba(26, 31, 43, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.textContent strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.visionRiskSection {
+  background-color: #F8F9FA;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.glassCard {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.iconWrapper {
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.glassCard h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.glassCard p {
+  color: rgba(26, 31, 43, 0.7);
+  line-height: 1.6;
+}
+
+.centerHeader {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: rgba(26, 31, 43, 0.7);
+  margin-top: 1rem;
+}
+
+.approachSteps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .approachSteps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .approachSteps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: rgba(26, 31, 43, 0.1);
+    z-index: 0;
+  }
+}
+
+.stepItem {
+  position: relative;
+  z-index: 1;
+  background: var(--color-bg);
+  padding: 1rem;
+}
+
+.stepNumber {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(197, 168, 128, 0.2); /* Faded accent color */
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.stepItem h4 {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.stepItem p {
+  color: rgba(26, 31, 43, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.leadershipSection {
+  background-color: var(--color-bg-dark);
+  color: white;
+}
+
+.leadershipContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.leadershipText {
+  max-width: 800px;
+}
+
+.leadershipText h2 {
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.leadershipText p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.highlight {
+  font-size: 0.875rem !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-style: italic;
+}

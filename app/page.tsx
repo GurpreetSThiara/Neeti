@@ -1,65 +1,179 @@
-import Image from "next/image";
+'use client';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowRight, BarChart3, Target, MessageSquare, Map, PieChart, ShieldAlert } from 'lucide-react';
+import styles from './page.module.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 export default function Home() {
+  const services = [
+    { icon: <BarChart3 size={32} />, title: "Political Research & Electoral Intelligence", link: "/services#research" },
+    { icon: <Target size={32} />, title: "Campaign Strategy & War-Room Consulting", link: "/services#strategy" },
+    { icon: <MessageSquare size={32} />, title: "Narrative & Communication Strategy", link: "/services#narrative" },
+    { icon: <Map size={32} />, title: "Booth-Level Strategy", link: "/services#booth" },
+    { icon: <PieChart size={32} />, title: "Political Surveys & Voter Research", link: "/services#surveys" },
+    { icon: <ShieldAlert size={32} />, title: "Reputation & Crisis Strategy", link: "/services#reputation" }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={styles.main}>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroBackground}>
+          <div className={styles.heroGradient}></div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className={`container ${styles.heroContainer}`}>
+          <motion.div 
+            className={styles.heroContent}
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <motion.div variants={fadeUpVariant} className={styles.badge}>
+              Political Intelligence & Election Strategy
+            </motion.div>
+            <motion.h1 variants={fadeUpVariant} className={styles.heroTitle}>
+              Data-Driven Strategy for <br/><span className="text-gradient">Modern Elections.</span>
+            </motion.h1>
+            <motion.p variants={fadeUpVariant} className={styles.heroSubtitle}>
+              In modern elections, victory is determined by marginal shifts. We provide the strategic intelligence, booth-level insights, and narrative discipline required to win.
+            </motion.p>
+            <motion.div variants={fadeUpVariant} className={styles.heroActions}>
+              <Link href="/contact" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+                Schedule Consultation
+              </Link>
+              <Link href="/services" className="btn btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem', border: '1px solid rgba(255,255,255,0.2)', color: 'white' }}>
+                Explore Capabilities
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-      </main>
+      </section>
+
+      {/* About Snapshot */}
+      <section className={`section-padding ${styles.aboutSection}`}>
+        <div className={`container ${styles.aboutContainer}`}>
+          <motion.div 
+            className={styles.aboutText}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUpVariant}
+          >
+            <h2 className={styles.sectionTitle}>The Architecture of Victory</h2>
+            <p className={styles.leadText}>
+              Neeti Collective is positioned at the intersection of political insight and strategic intelligence.
+            </p>
+            <p className={styles.bodyText}>
+              We are not a traditional marketing agency. We are a strategic advisory institution providing data-backed electoral intelligence and rigorous campaign structuring. We partner with political leadership, candidates, and campaign organizations to transform data into definitive electoral outcomes.
+            </p>
+            <Link href="/about" className={styles.textLink}>
+              Discover our philosophy <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+          
+          <motion.div 
+            className={styles.aboutStats}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeUpVariant} className={styles.statCard}>
+              <h3 className={styles.statNumber}>100+</h3>
+              <p className={styles.statLabel}>Constituencies Analyzed</p>
+            </motion.div>
+            <motion.div variants={fadeUpVariant} className={styles.statCard}>
+              <h3 className={styles.statNumber}>Data</h3>
+              <p className={styles.statLabel}>Driven War-Rooms</p>
+            </motion.div>
+            <motion.div variants={fadeUpVariant} className={styles.statCard}>
+              <h3 className={styles.statNumber}>Booth</h3>
+              <p className={styles.statLabel}>Level Intelligence</p>
+            </motion.div>
+            <motion.div variants={fadeUpVariant} className={styles.statCard}>
+              <h3 className={styles.statNumber}>Zero</h3>
+              <p className={styles.statLabel}>Compromise Strategy</p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Overview */}
+      <section className={`section-padding ${styles.servicesSection}`}>
+        <div className="container">
+          <motion.div 
+            className={styles.sectionHeader}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUpVariant}
+          >
+            <h2 className={styles.sectionTitleCenter}>Core Capabilities</h2>
+            <p className={styles.sectionDescCenter}>
+              Comprehensive strategic capabilities designed for rapid deployment in high-stakes electoral environments.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className={styles.servicesGrid}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
+            {services.map((service, index) => (
+              <motion.div key={index} variants={fadeUpVariant} className={styles.serviceCard}>
+                <div className={styles.serviceIconWrapper}>
+                  {service.icon}
+                </div>
+                <h3 className={styles.serviceItemTitle}>{service.title}</h3>
+                <div className={styles.serviceCardFooter}>
+                  <Link href={service.link} className={styles.serviceLink}>
+                    Learn Methodology <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className={`section-padding ${styles.ctaSection}`}>
+        <div className="container">
+          <motion.div 
+            className={styles.ctaCard}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUpVariant}
+          >
+            <div className={styles.ctaContent}>
+              <h2 className={styles.ctaTitle}>Ready to build your war-room?</h2>
+              <p className={styles.ctaDesc}>
+                Partner with Neeti Collective to secure the strategic edge in your upcoming election.
+              </p>
+              <Link href="/contact" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+                Initiate Dialogue
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }
