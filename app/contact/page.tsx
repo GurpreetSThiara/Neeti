@@ -26,16 +26,38 @@ export default function Contact() {
     inquiry: 'general',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Front-end only stub
-    alert('Thank you for reaching out to Neeti Collective. A strategist will contact you shortly.');
-    setFormData({ name: '', email: '', organization: '', inquiry: 'general', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      if (result.result === 'success') {
+          setSubmitStatus('success');
+          setFormData({ name: '', email: '', organization: '', inquiry: 'general', message: '' });
+      } else {
+          setSubmitStatus('error');
+      }
+    } catch (error) {
+        console.error('Submission error:', error);
+        setSubmitStatus('error');
+    } finally {
+        setIsSubmitting(false);
+    }
   };
 
   return (
@@ -151,8 +173,20 @@ export default function Contact() {
                   <textarea id="message" name="message" rows={5} value={formData.message} onChange={handleChange} required></textarea>
                 </div>
 
-                <button type="submit" className={`btn btn-primary ${styles.submitBtn}`}>
-                  Submit Transmission <Send size={16} style={{ marginLeft: '8px' }} />
+                {submitStatus === 'success' && (
+                  <div className={styles.successMessage} style={{ color: '#4caf50', marginBottom: '1rem', fontSize: '0.9rem' }}>
+                    Transmission successful. Our strategy desk will contact you soon.
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className={styles.errorMessage} style={{ color: '#f44336', marginBottom: '1rem', fontSize: '0.9rem' }}>
+                    There was an error sending your transmission. Please try again.
+                  </div>
+                )}
+                <button type="submit" className={`btn btn-primary ${styles.submitBtn}`} disabled={isSubmitting}>
+                  {isSubmitting ? 'Transmitting...' : (
+                    <>Submit Transmission <Send size={16} style={{ marginLeft: '8px' }} /></>
+                  )}
                 </button>
                 <p className={styles.privacyNote}>*All communications are secured and strictly confidential.</p>
               </form>
