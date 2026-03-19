@@ -49,10 +49,11 @@
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.02em;
-  color: white;
+  color: white; /* default for themeDark */
   transition: color var(--transition-normal);
 }
 
+.themeLight .logotext,
 .scrolled .logotext {
   color: var(--color-text);
 }
@@ -70,7 +71,7 @@
 }
 
 .navLink {
-  color: white;
+  color: white; /* default for themeDark */
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -79,6 +80,7 @@
   transition: opacity var(--transition-fast), color var(--transition-normal);
 }
 
+.themeLight .navLink,
 .scrolled .navLink {
   color: var(--color-text);
 }
@@ -120,12 +122,13 @@
   display: block;
   background: transparent;
   border: none;
-  color: white;
+  color: white; /* default for themeDark */
   cursor: pointer;
   padding: 0.5rem;
   transition: color var(--transition-normal);
 }
 
+.themeLight .mobileMenuBtn,
 .scrolled .mobileMenuBtn {
   color: var(--color-text);
 }

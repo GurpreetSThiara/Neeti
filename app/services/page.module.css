@@ -1,10 +1,9 @@
 .main {
-  padding-top: 80px;
   background-color: var(--color-bg);
 }
 
 .header {
-  padding: 6rem 0 4rem;
+  padding: 10rem 0 4rem;
   background-color: var(--color-bg-dark);
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);

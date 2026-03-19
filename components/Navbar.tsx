@@ -12,6 +12,12 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // The home, about, services, contact, and insights pages have dark hero backgrounds at the top
+  const isDarkHeaderPage = pathname === '/' || pathname === '/about' || pathname === '/contact' || pathname === '/services' || pathname === '/insights';
+  
+  // A helper class that we apply if the text should be light initially
+  const themeClass = isDarkHeaderPage ? styles.themeDark : styles.themeLight;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -30,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`${styles.navbar} ${isScrolled || isMobileMenuOpen ? styles.scrolled : ''}`}>
+      <header className={`${styles.navbar} ${themeClass} ${isScrolled || isMobileMenuOpen ? styles.scrolled : ''}`}>
         <div className="container">
           <div className={styles.navInner}>
             {/* Logo */}
