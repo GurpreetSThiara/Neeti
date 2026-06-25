@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, BarChart3, Target, MessageSquare, Map, PieChart, ShieldAlert } from 'lucide-react';
 import styles from './page.module.css';
+import HorizontalExpandGallery from '@/components/gallery/HorizontalExpandGallery';
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -148,6 +149,33 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Strategic Footprint Section */}
+      <section className={`section-padding ${styles.gallerySection}`}>
+        <div className="container">
+          <motion.div 
+            className={styles.sectionHeader}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUpVariant}
+          >
+            <h2 className={styles.galleryTitle}>Strategic Footprint</h2>
+            <p className={styles.galleryDesc}>
+              A proven track record of deploying sophisticated digital war-rooms, localized narrative strategies, and grassroots mobilization across key states.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeUpVariant}
+          >
+            <HorizontalExpandGallery />
           </motion.div>
         </div>
       </section>

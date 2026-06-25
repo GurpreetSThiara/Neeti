@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, BookOpen, BarChart2, TrendingUp } from 'lucide-react';
 import styles from './page.module.css';
 
@@ -88,8 +89,16 @@ export default function InsightsPage() {
           <div className={styles.featuredInsight}>
             <div className={styles.featuredVisual}>
               <div className={styles.placeholderVisual}>
-                {/* Visual grid placeholder representing data/charts */}
                 <div className={styles.gridOverlay}></div>
+                <Image
+                  src="https://cdn.jsdelivr.net/gh/arambhaniti/neeti-content@main/shrinking_insights_one.png"
+                  alt="The Shrinking Margins of Victory"
+                  fill
+                  sizes="(max-width: 992px) 100vw, 50vw"
+                  className={styles.featuredImage}
+                  priority
+                  unoptimized
+                />
               </div>
             </div>
             <div className={styles.featuredContent}>
