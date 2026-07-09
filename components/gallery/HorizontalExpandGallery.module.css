@@ -200,7 +200,7 @@
 .cardTitle {
   font-family: var(--font-serif);
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #ffffff;
   margin: 0;
   line-height: 1.1;
@@ -361,7 +361,7 @@
 .collapsedTitle {
   font-family: var(--font-serif);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
   margin: 0;
   white-space: nowrap;
