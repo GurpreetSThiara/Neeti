@@ -46,7 +46,7 @@ export default function Footer() {
               <Link href="/careers" className={styles.footerLink}>Careers</Link>
               <div className={styles.contactItem}>
                 <Mail size={16} />
-                <span>strategy@neeticollective.in</span>
+                <span>info@neeticollective.com</span>
               </div>
               <div className={styles.contactItem}>
                 <MapPin size={16} />

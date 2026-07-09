@@ -102,11 +102,11 @@ export default function Contact() {
                 <p>For immediate campaign inquiries, reach out to our strategy desk.</p>
                 <div className={styles.infoItem}>
                   <Mail size={20} className={styles.icon} />
-                  <span>strategy@neeticollective.in</span>
+                  <span>info@neeticollective.com</span>
                 </div>
                 <div className={styles.infoItem}>
                   <Phone size={20} className={styles.icon} />
-                  <span>Available upon request</span>
+                  <span>+91 9213220433</span>
                 </div>
               </motion.div>
 

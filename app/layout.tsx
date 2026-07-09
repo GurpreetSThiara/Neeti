@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import WhatsAppFAB from '@/components/WhatsAppFAB';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFAB />
       </body>
     </html>
   );
