@@ -11,10 +11,10 @@
 
 .navbar.scrolled {
   padding: 0.75rem 0;
-  background: rgba(234, 230, 223, 0.85); /* Matches --color-bg with opacity */
+  background: var(--color-navbar-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(26, 31, 43, 0.05);
+  border-bottom: 1px solid var(--color-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 }
 
@@ -49,13 +49,8 @@
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.02em;
-  color: white; /* default for themeDark */
-  transition: color var(--transition-normal);
-}
-
-.themeLight .logotext,
-.scrolled .logotext {
   color: var(--color-text);
+  transition: color var(--transition-normal);
 }
 
 .desktopNav {
@@ -71,18 +66,13 @@
 }
 
 .navLink {
-  color: white; /* default for themeDark */
+  color: var(--color-text);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   position: relative;
   opacity: 0.7;
   transition: opacity var(--transition-fast), color var(--transition-normal);
-}
-
-.themeLight .navLink,
-.scrolled .navLink {
-  color: var(--color-text);
 }
 
 .navLink:hover {
@@ -122,15 +112,10 @@
   display: block;
   background: transparent;
   border: none;
-  color: white; /* default for themeDark */
+  color: var(--color-text);
   cursor: pointer;
   padding: 0.5rem;
   transition: color var(--transition-normal);
-}
-
-.themeLight .mobileMenuBtn,
-.scrolled .mobileMenuBtn {
-  color: var(--color-text);
 }
 
 @media (min-width: 992px) {
@@ -169,4 +154,38 @@
 
 .mobileNavCta {
   margin-top: 2rem;
+}
+
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 992px) {
+  .mobileActions {
+    display: none;
+  }
+}
+
+.themeToggle {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.themeToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+:global(html:not(.dark)) .themeToggle:hover {
+  background: rgba(0, 0, 0, 0.05);
 }

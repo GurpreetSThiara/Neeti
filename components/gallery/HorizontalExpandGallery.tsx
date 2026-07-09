@@ -8,7 +8,7 @@ import styles from "./HorizontalExpandGallery.module.css"
 const images = [
   {
     id: 3,
-    src: "https://res.cloudinary.com/dppbhby1g/image/upload/v1750181594/20240511_131436600_iOS_fcbsld.jpg",
+    src: "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1000/v1750181594/20240511_131436600_iOS_fcbsld.jpg",
     title: "Maharashtra",
     category: "War-Room Consulting",
     description:
@@ -20,7 +20,7 @@ const images = [
   },
   {
     id: 1,
-    src: "https://res.cloudinary.com/dppbhby1g/image/upload/v1750181596/WhatsApp_Image_2024-05-01_at_1.17.12_PM_voqgpj.jpg",
+    src: "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1000/v1750181596/WhatsApp_Image_2024-05-01_at_1.17.12_PM_voqgpj.jpg",
     title: "Rajasthan",
     category: "Narrative & Welfare Strategy",
     description:
@@ -32,7 +32,7 @@ const images = [
   },
   {
     id: 4,
-    src: "https://res.cloudinary.com/dppbhby1g/image/upload/v1750181586/20240326123417_IMG_7167_ic33y4.jpg",
+    src: "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1000/v1750181586/20240326123417_IMG_7167_ic33y4.jpg",
     title: "Karnataka",
     category: "Grassroots Mobilization",
     description:
@@ -44,7 +44,7 @@ const images = [
   },
   {
     id: 6,
-    src: "https://res.cloudinary.com/dppbhby1g/image/upload/v1750181385/a5419e3f-b313-4590-b86c-b337216c91d4_caubap.jpg",
+    src: "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1000/v1750181385/a5419e3f-b313-4590-b86c-b337216c91d4_caubap.jpg",
     title: "Andhra Pradesh",
     category: "Electoral Intelligence",
     description:
@@ -56,7 +56,7 @@ const images = [
   },
   {
     id: 2,
-    src: "https://res.cloudinary.com/dppbhby1g/image/upload/v1750181596/WhatsApp_Image_2024-05-01_at_1.17.14_PM_a9dv4p.jpg",
+    src: "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1000/v1750181596/WhatsApp_Image_2024-05-01_at_1.17.14_PM_a9dv4p.jpg",
     title: "Punjab",
     category: "Constituency Management",
     description:
@@ -68,7 +68,7 @@ const images = [
   },
   {
     id: 5,
-    src: "https://res.cloudinary.com/dppbhby1g/image/upload/v1750181386/c376bb58-8829-4a03-a494-ce1cea213f6c_r2upzi.jpg",
+    src: "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1000/v1750181386/c376bb58-8829-4a03-a494-ce1cea213f6c_r2upzi.jpg",
     title: "Uttar Pradesh",
     category: "Strategic Advisory",
     description:

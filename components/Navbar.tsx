@@ -11,20 +11,33 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  // The home, about, services, contact, and insights pages have dark hero backgrounds at the top
-  const isDarkHeaderPage = pathname === '/' || pathname === '/about' || pathname === '/contact' || pathname === '/services' || pathname === '/insights';
-  
-  // A helper class that we apply if the text should be light initially
-  const themeClass = isDarkHeaderPage ? styles.themeDark : styles.themeLight;
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
+    
+    // Check if document has .dark class (which layout script might have applied)
+    const isDark = document.documentElement.classList.contains('dark');
+    setTheme(isDark ? 'dark' : 'light');
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    }
+  };
 
   const navLinks = [
     { name: 'About', href: '/about' },
@@ -36,7 +49,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`${styles.navbar} ${themeClass} ${isScrolled || isMobileMenuOpen ? styles.scrolled : ''}`}>
+      <header className={`${styles.navbar} ${isScrolled || isMobileMenuOpen ? styles.scrolled : ''}`}>
         <div className="container">
           <div className={styles.navInner}>
             {/* Logo */}
@@ -56,19 +69,100 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
+              
+              {/* Theme Switcher */}
+              <button onClick={toggleTheme} className={styles.themeToggle} aria-label="Toggle theme">
+                <AnimatePresence mode="wait" initial={false}>
+                  {theme === 'dark' ? (
+                    <motion.div
+                      key="moon"
+                      initial={{ rotate: -45, scale: 0, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: 45, scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                      </svg>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="sun"
+                      initial={{ rotate: -45, scale: 0, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: 45, scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2" />
+                        <path d="M12 20v2" />
+                        <path d="M4.93 4.93l1.41 1.41" />
+                        <path d="M17.66 17.66l1.41 1.41" />
+                        <path d="M2 12h2" />
+                        <path d="M20 12h2" />
+                        <path d="M6.34 17.66l-1.41 1.41" />
+                        <path d="M19.07 4.93l-1.41 1.41" />
+                      </svg>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+
               <Link href="/contact" className={`btn btn-primary ${styles.ctaBtn}`}>
                 Consultation
               </Link>
             </nav>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              className={styles.mobileMenuBtn}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile Actions */}
+            <div className={styles.mobileActions}>
+              <button onClick={toggleTheme} className={styles.themeToggle} aria-label="Toggle theme">
+                <AnimatePresence mode="wait" initial={false}>
+                  {theme === 'dark' ? (
+                    <motion.div
+                      key="moon"
+                      initial={{ rotate: -45, scale: 0, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: 45, scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                      </svg>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="sun"
+                      initial={{ rotate: -45, scale: 0, opacity: 0 }}
+                      animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                      exit={{ rotate: 45, scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2" />
+                        <path d="M12 20v2" />
+                        <path d="M4.93 4.93l1.41 1.41" />
+                        <path d="M17.66 17.66l1.41 1.41" />
+                        <path d="M2 12h2" />
+                        <path d="M20 12h2" />
+                        <path d="M6.34 17.66l-1.41 1.41" />
+                        <path d="M19.07 4.93l-1.41 1.41" />
+                      </svg>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+              
+              {/* Mobile Menu Toggle */}
+              <button
+                className={styles.mobileMenuBtn}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </header>

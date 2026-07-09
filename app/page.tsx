@@ -1,7 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, BarChart3, Target, MessageSquare, Map, PieChart, ShieldAlert } from 'lucide-react';
 import styles from './page.module.css';
 import HorizontalExpandGallery from '@/components/gallery/HorizontalExpandGallery';
@@ -19,7 +21,23 @@ const staggerContainer = {
   }
 };
 
+const carouselImages = [
+  "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1200/v1750181594/20240511_131436600_iOS_fcbsld.jpg",
+  "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1200/v1750181596/WhatsApp_Image_2024-05-01_at_1.17.12_PM_voqgpj.jpg",
+  "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1200/v1750181586/20240326123417_IMG_7167_ic33y4.jpg",
+  "https://res.cloudinary.com/dppbhby1g/image/upload/q_auto,f_auto,w_1200/v1750181596/WhatsApp_Image_2024-05-01_at_1.17.14_PM_a9dv4p.jpg",
+];
+
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   const services = [
     { icon: <BarChart3 size={32} />, title: "Political Research & Electoral Intelligence", link: "/services#research" },
     { icon: <Target size={32} />, title: "Campaign Strategy & War-Room Consulting", link: "/services#strategy" },
@@ -34,6 +52,25 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroBackground}>
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 0.35, scale: 1.01 }} // Blends elegantly with overlays
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              className={styles.heroBgImageWrapper}
+            >
+              <Image
+                src={carouselImages[currentSlide]}
+                alt="Neeti Collective Strategic Operations"
+                fill
+                priority
+                unoptimized
+                className={styles.heroBgImage}
+              />
+            </motion.div>
+          </AnimatePresence>
           <div className={styles.heroGradient}></div>
         </div>
         <div className={`container ${styles.heroContainer}`}>
@@ -56,9 +93,21 @@ export default function Home() {
               <Link href="/contact" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
                 Schedule Consultation
               </Link>
-              <Link href="/services" className="btn btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem', border: '1px solid rgba(255,255,255,0.2)', color: 'white' }}>
+              <Link href="/services" className="btn btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
                 Explore Capabilities
               </Link>
+            </motion.div>
+
+            {/* Carousel Slide Indicators */}
+            <motion.div variants={fadeUpVariant} className={styles.carouselIndicators}>
+              {carouselImages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`${styles.indicator} ${currentSlide === index ? styles.activeIndicator : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </motion.div>
           </motion.div>
         </div>
@@ -138,10 +187,12 @@ export default function Home() {
           >
             {services.map((service, index) => (
               <motion.div key={index} variants={fadeUpVariant} className={styles.serviceCard}>
-                <div className={styles.serviceIconWrapper}>
-                  {service.icon}
+                <div className={styles.serviceHeader}>
+                  <div className={styles.serviceIconWrapper}>
+                    {service.icon}
+                  </div>
+                  <h3 className={styles.serviceItemTitle}>{service.title}</h3>
                 </div>
-                <h3 className={styles.serviceItemTitle}>{service.title}</h3>
                 <div className={styles.serviceCardFooter}>
                   <Link href={service.link} className={styles.serviceLink}>
                     Learn Methodology <ArrowRight size={16} />
